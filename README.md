@@ -14,7 +14,7 @@ The [IBM® z/OS® Cloud Broker](https://www.ibm.com/docs/en/cloud-paks/z-moderni
 
 The [IBM Operator Collection SDK](https://github.com/IBM/operator-collection-sdk/tree/main) provides the resources and tools needed to develop Operator Collections against the IBM® z/OS® Cloud Broker.
 
-The [IBM MQ Resources Operator Collection (zos_mq_operator)](https://github.com/IBM/zos_mq_operator) sample is implemented as a sub-operator of the IBM z/OS Cloud Broker, and can be installed and invoked from the Red Hat® OpenShift Console. It includes a set of **Provided APIs** that can be used to manage IBM MQ **Local** and **Alias** queues, and **Server Connection** channels on a ZosEndpoint. ZosEndpoints are a function of the z/OS Cloud Broker and allow a mapping to be created to a z/OS Logical Partition (LPAR) where an existing IBM MQ for z/OS Queue Manager is running. If required, an instance of a z/OS Cloud Broker and instances of specific ZosEndpoints can be configured ahead of time by a Systems Programmer. This would allow end users to simply create resources on defined ZosEndpoints.
+The [IBM MQ Resources Operator Collection (zos_mq_operator)](https://github.com/IBM/zos_mq_operator) sample is implemented as a sub-operator of the IBM z/OS Cloud Broker, and can be installed and invoked from the Red Hat® OpenShift Console. It includes a set of **Provided APIs** that can be used to manage IBM MQ **Local** and **Alias** queues, and **Server Connection** channels on a ZosEndpoint. ZosEndpoints are a function of the z/OS Cloud Broker and allow a mapping to be created to a z/OS Logical Partition (LPAR) where an existing stand-alone IBM MQ for z/OS Queue Manager is running. If required, an instance of a z/OS Cloud Broker and instances of specific ZosEndpoints can be configured ahead of time by a Systems Programmer. This would allow end users to simply create resources on defined ZosEndpoints.
 
 Some IBM MQ customers were asked if they had a requirement to provision IBM MQ for z/OS Queue Managers. The general view was that this was not currently a requirement since users already had existing queue managers defined. If you do not have an existing Queue Manager defined, you can stand-up one in a **Wazi Sandbox**. Refer to section **IBM Wazi Sandbox** below. 
 
@@ -212,6 +212,10 @@ For example, the tasks executed to create a local queue are:
 
 When you create an IBM MQ for z/OS resource from the Red Hat® OpenShift Console, an object is created to allow you to manage the resource in Red Hat® OpenShift. It is important that you perform actions against the object in Red Hat® OpenShift, and not against the resource on the target IBM MQ for z/OS Queue Manager. Otherwise, you could end up deleting a resource from the Queue Manager but not the object from Red Hat® OpenShift. Resulting in out of step resources and hence additional administrative overhead.
 
+## Troubleshooting
+
+Refer to the [z/OS Cloud Broker Troubleshooting section](https://www.ibm.com/docs/en/cloud-paks/z-modernization-stack/2023.2?topic=broker-troubleshooting) for further information.
+
 ## The IBM Operator Collection SDK
 
 The IBM Operator Collection SDK is a comprehensive set of resources and tools that are designed for the development of operator collections against the z/OS Cloud Broker. See [Developing operator collections with the IBM Operator Collection SDK](https://www.ibm.com/docs/en/cloud-paks/z-modernization-stack/2023.2?topic=broker-developing-operator-collections-operator-collection-sdk) for further information.
@@ -220,13 +224,13 @@ The above section includes a link to the [IBM Operator Collection SDK](https://g
 
 ## The IBM Operator Collection SDK Extension for VS Code
 
-[The IBM Operator Collection SDK Extension for VS Code](https://github.com/IBM/operator-collection-sdk-vscode-extension) simplifies the Operator Collection development experience by allowing you to manage the deployment of your operator in OpenShift, and the ability to debug direcly from your VS Code editor.
+[The IBM Operator Collection SDK Extension for VS Code](https://github.com/IBM/operator-collection-sdk-vscode-extension) simplifies the Operator Collection development experience by allowing you to manage the deployment of your operator in OpenShift, and the ability to debug directly from your VS Code editor.
 
 ## IBM Wazi Sandbox
 
 IBM Wazi and IBM Wazi Sandbox are part of the [IBM Z and Cloud Modernization Stack](https://www.ibm.com/docs/en/cloud-paks/z-modernization-stack/2023.2?topic=overview) delivery. IBM Wazi Sandbox allows users to create sandbox environments on demand and experiment with cloud native tools and IBM products.
 
-IBM Wazi Sandbox uses the same Application Developer Controlled Distribution (ADCD) as used for creating an [IBM Z Development and Test Environment](https://www.ibm.com/docs/en/zdt/14.1?topic=reference-adcd-zos-v2r5-december-edition-2022). IBM MQ for z/OS CD V9.3.0 is included with this distribution so you can install this. Address spaces **CSQ9MSTR** and **CSQ9CHIN**, for **Queue Manager CSQ9** and the corresponding **Channel Initiator**, are preconfigured and can be started using a command prefix of **%CSQ9** and entering the following commands:
+IBM Wazi Sandbox uses the same Application Developer Controlled Distribution (ADCD) as used for creating an [IBM Z Development and Test Environment](https://www.ibm.com/docs/en/zdt/14.1?topic=reference-adcd-zos-v2r5-december-edition-2022). IBM MQ for z/OS CD V9.3.0 is included with this distribution so you can install this. Address spaces **CSQ9MSTR** and **CSQ9CHIN**, for stand-alone **Queue Manager CSQ9** and the corresponding **Channel Initiator**, are preconfigured and can be started using a command prefix of **%CSQ9** and entering the following commands:
 
 &nbsp;&nbsp;&nbsp;&nbsp;**%CSQ9 START QMGR**
 
