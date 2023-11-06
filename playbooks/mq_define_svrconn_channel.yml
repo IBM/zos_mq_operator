@@ -53,7 +53,7 @@
 
     - name: Issue DISPLAY svrconn CHANNEL command
       zos_operator:
-        cmd: "{{ mq_qmgr_cpf }} DISPLAY {{ mq_channel_type }}({{ mq_channel_name }})"
+        cmd: "{{ mq_qmgr_cpf }} DISPLAY channel({{ mq_channel_name }})"
         verbose: false
       register: display_svrconn_channel_output
       when: define_svrconn_channel_output.content is search("CSQ9022I")
